@@ -3,27 +3,24 @@ package kr.easw.lesson2;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
+/*
  * 해당 클래스는 간단한 블랙잭 게임의 예제입니다.
- *
  * do-while로 적절한 코드를 작성하였다면, 간단한 블랙잭 게임이 진행됩니다.
  */
 public class DoWhileIteration {
     private static final Random random = new Random();
-
     private static final Scanner scanner = new Scanner(System.in);
-
     private static final int TARGET_VALUE = 21;
-
     private static int currentValue = 0;
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) {        // 메인
         System.out.println("시작합니다.");
-        checkValue();
-        if (currentValue >= TARGET_VALUE) {
+        checkValue();                           // 실행시 현재점수가 변수에 저장됨
+        if (currentValue >= TARGET_VALUE) {     // 21점 초과 시
             System.out.println("최종 점수: 0");
             System.out.println("패배했습니다.");
-        } else {
+        } else {                                // 21점 미만 시
             System.out.println("최종 점수: " + (TARGET_VALUE - (TARGET_VALUE - currentValue)));
         }
     }
@@ -37,13 +34,19 @@ public class DoWhileIteration {
      * - do-while문을 반드시 이용해야 합니다.
      */
     private static void checkValue() {
-        throw new RuntimeException("이 코드 라인을 지우고, 이곳에서 작성하십시오.");
+
+        do{
+            increaseValue();
+            System.out.println("현재 패의 총합은 : "+currentValue);
+        }
+        while(!stopGame());
+
     }
 
-    public static boolean stopGame() {
+    public static boolean stopGame() {      // Y이면 계속 N이면 멈춤
         if (TARGET_VALUE <= currentValue)
             return true;
-        String nextValue = null;
+        String nextValue = null;        // 문자열 초기화
         while (true) {
             System.out.print("계속 합니까? (Y / N) : ");
             String input = scanner.next();
@@ -56,8 +59,8 @@ public class DoWhileIteration {
         return nextValue.equals("N");
     }
 
-
-    private static void increaseValue() {
+    private static void increaseValue(){
         currentValue += random.nextInt(10) + 1;
     }
+
 }

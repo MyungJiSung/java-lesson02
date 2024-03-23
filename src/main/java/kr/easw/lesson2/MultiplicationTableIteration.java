@@ -4,15 +4,15 @@ import java.util.Random;
 
 public class MultiplicationTableIteration {
     private static int[][] fixedMultiplicationTable = new int[][]{
-            new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9},
-            new int[]{2, 4, 6, 8, 10, 12, 14, 16, 18},
-            new int[]{3, 6, 9, 12, 15, 18, 21, 24, 27},
-            new int[]{4, 8, 12, 16, 20, 24, 28, 32, 36},
-            new int[]{5, 10, 15, 20, 25, 30, 35, 40, 45},
-            new int[]{6, 12, 18, 24, 30, 36, 42, 48, 54},
-            new int[]{7, 14, 21, 28, 35, 42, 49, 56, 63},
-            new int[]{8, 16, 24, 32, 40, 48, 56, 64, 72},
-            new int[]{9, 18, 27, 36, 45, 54, 63, 72, 81}
+            new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9},           // 1단
+            new int[]{2, 4, 6, 8, 10, 12, 14, 16, 18},      // 2단
+            new int[]{3, 6, 9, 12, 15, 18, 21, 24, 27},     // 3단
+            new int[]{4, 8, 12, 16, 20, 24, 28, 32, 36},    // 4단
+            new int[]{5, 10, 15, 20, 25, 30, 35, 40, 45},   // 5단
+            new int[]{6, 12, 18, 24, 30, 36, 42, 48, 54},   // 6단
+            new int[]{7, 14, 21, 28, 35, 42, 49, 56, 63},   // 7단
+            new int[]{8, 16, 24, 32, 40, 48, 56, 64, 72},   // 8단
+            new int[]{9, 18, 27, 36, 45, 54, 63, 72, 81}    // 9단
     };
 
     private static final int CHECK_COUNT = 9;
@@ -22,7 +22,7 @@ public class MultiplicationTableIteration {
     public static void main(String[] args) {
         // Random#nextInt(int)는 0부터 주어진 값까지(exclusive) 무작위의 숫자를 반환합니다.
         // 현재 조건에서는, 1단부터 9단까지 무작위로 조건을 주어야 합니다.
-        // 그러므로, 9를 파리미터로 사용하면 0부터 8까지의 무작위 값이 주어지고,
+        // 그러므로, 9를 파라미터로 사용하면 0부터 8까지의 무작위 값이 주어지고,
         // 이에 1을 더해 1에서 9 사이의 무작위 값을 생성할 수 있습니다.
         loopMultiplicationTable(random.nextInt(9) + 1);
         if (matchCounter == CHECK_COUNT) {
@@ -43,8 +43,11 @@ public class MultiplicationTableIteration {
         // 아래에 제시된 2줄의 코드를 활용하여 코드를 작성해보세요.
         // 힌트를 활용하지 않아도 구현은 가능합니다.
         int row = 1;
-        matchMultiplicationTable(first, row, checkMultiplicationTable(first, row));
-        throw new RuntimeException("이 코드 라인을 지우고, 이곳에서 작성하십시오.");
+
+        while(row < 10) {
+            matchMultiplicationTable(first, row, checkMultiplicationTable(first, row));
+            row++;
+        }
     }
 
 
@@ -56,9 +59,12 @@ public class MultiplicationTableIteration {
      * @param second 구구단의 열
      */
     private static int checkMultiplicationTable(int first, int second) {
-        throw new RuntimeException("이 코드 라인을 지우고, 이곳에서 작성하십시오.");
-    }
+        int third;
+        third=first*second;
 
+        return third;
+
+    }
 
     /**
      * 해당 메서드는 구구단의 행과 열을 받아 미리 선언된 값과 주어진 값을 비교하고,
